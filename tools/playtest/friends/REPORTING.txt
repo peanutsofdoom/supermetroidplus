@@ -1,0 +1,52 @@
+REPORTING AN ISSUE
+
+Play normally. You do not need to investigate every glitch or replay the whole
+game to report one. Please put each separate issue in its own Discord thread
+(or separate message if using a group chat).
+
+1. Capture the incident. A 15-45 second clip is ideal: include roughly 10 seconds
+   before it and a few seconds afterwards. Point out the moment to watch.
+   A screenshot is enough for something that stays on screen.
+2. Copy REPORT TEMPLATE.txt into your Discord message and fill the short fields.
+   A room name is fine if you do not have Coordinates. Do not guess the hex IDs.
+3. If practical, try once more and say whether it repeated. If it did not happen
+   in the attached clip, say so and describe the earlier event separately.
+4. For a crash or unexplained rendering problem, create a small report ZIP after
+   closing the game. Do this before the next launch, which replaces recent logs:
+   Windows: double-click Create Report.cmd.
+   Deck Desktop Mode: open a terminal in the package folder and run:
+     python3 tools/create_report.py
+   Find the ZIP in reports and attach it to the same thread. You can inspect the
+   neighboring unzipped report folder. Nothing is uploaded automatically.
+
+The helper includes BUILD.json, the report template, a basic OS summary and up
+to three recent launcher/renderer logs. It excludes the ROM, saves, controller
+settings, account files, screenshots and recordings. Local home/package paths
+are redacted from collected text. Attach your chosen clip/photo separately.
+For a repeatable blocker, an optional copy of saves/Super Metroid.srm can help;
+save and close normally first, and send a copy. Do not send the entire game ZIP.
+
+COORDINATES
+Press F8 to toggle the readout in either launcher. On Deck, map F8 to an unused
+rear button through Steam Input. The windowed Settings menu also has Debug
+coordinates HUD. Play starts hidden; Play With Coordinates starts visible.
+Both launchers share progress and use the same gameplay variant.
+D249 or D250 identifies the running build. R = room ID; S = room-state ID; G = game-state ID.
+P = Samus position; C = camera position; F = session frame; W/N = wide/native.
+A photo/clip of this readout is enough; no need to type every number.
+Frames restart on each launch, so include the build and clip together.
+
+RECORDING
+Steam Game Recording can be used when the Steam Overlay works for this game.
+Do a short capture check once, especially on Windows, before a long playthrough.
+Trim and export the relevant clip rather than sending an entire session.
+Any recorder you already use is fine. If the game cannot be captured, a phone
+video is still useful. Recording can add load: for slowdown reports, say whether
+recording was enabled and whether the slowdown also occurred without it.
+Valve's recording guide:
+https://help.steampowered.com/en/faqs/view/23B7-49AD-4A28-9590
+
+AFTER POSTING
+Keep your original clip and save until we confirm the fix. Tell us which build
+you retested. A clean clip does not prove a prior intermittent issue is gone;
+we will keep that distinction in the issue status.

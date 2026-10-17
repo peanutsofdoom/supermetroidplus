@@ -1,0 +1,17 @@
+{
+  "apps": [
+    {
+      "name": "Super Metroid Plus",
+      "project": "Super Metroid Plus",
+      "repository": "peanutsofdoom/supermetroidplus",
+      "folderName": "SuperMetroidPlus",
+      "releaseAssetFilter": "Super-Metroid-Plus-Windows-x64",
+      "tags": [
+        "emulator",
+        "snes",
+        "metroid"
+      ],
+      "autoUpdate": false
+    }
+  ]
+}

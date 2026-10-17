@@ -1,0 +1,11 @@
+*.sfc
+*.smc
+*.srm
+*.bst
+*.bsz
+*.exe
+*.dll
+*.o
+*.a
+__pycache__/
+private/

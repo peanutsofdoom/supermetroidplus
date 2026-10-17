@@ -1,0 +1,25 @@
+SUPER METROID PLUS - FRIENDS PLAYTEST 253/254
+
+Extract the whole ZIP and follow START HERE.txt for Windows or Steam Deck.
+Press F8 to show/hide the debug HUD so clips include the location. On Steam
+Deck, map F8 to a rear button in Steam Input. Both launchers support the toggle.
+Play normally and have fun; no need to hunt through a checklist.
+
+Found something? Start one thread per issue (or one message in a group chat):
+  Device + build:
+  Where:
+  What happened:
+  What you did just before:
+  Repeats? yes/no/not tried
+  Clip/screenshot + timestamp:
+
+A short clip with the lead-up is best. A phone photo/video is fine. If the clip
+didn't catch the fault, say that. For crashes, run Create Report after closing
+and attach the small ZIP from reports before launching again.
+
+We will reply with: Seen -> Investigating / Need more info -> Fixed in build X
+-> Verified (only after a matching replay or retest). Please retain original
+clips until confirmed. Retesting a particular fix is optional unless we ask.
+
+A quick progress update after a major boss or finishing the game is helpful,
+even when there were no problems. Thanks for playing!

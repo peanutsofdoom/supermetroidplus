@@ -1,0 +1,14 @@
+[Build 249/250] [Crash/blocked | Gameplay | Visual | Audio/performance] Short title
+
+Device: Windows PC (GPU if known) / Steam Deck
+Launcher: Play / Play With Coordinates
+Where: room name or attach the Coordinates readout
+What happened:
+Just before it happened: entry direction, move/weapon/item, boss phase if relevant
+Expected instead:
+Repeats: yes / no / not tried
+Attachment: clip or screenshot; incident at __ seconds
+Recording enabled during play: yes / no
+
+Optional: report ZIP; save/state from before the incident; controller/display
+details if relevant. If this clip did NOT capture the fault, please say so.

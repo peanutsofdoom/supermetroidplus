@@ -1,0 +1,33 @@
+{
+  "package": "Super Metroid Plus friends playtest",
+  "package_revision": 3,
+  "date": "2026-10-13",
+  "normal_build": 253,
+  "coordinates_build": 254,
+  "platforms": [
+    "Windows x64",
+    "Steam Deck via Proton 10.0"
+  ],
+  "rom_sha256": "12b77c4bc9c1832cee8881244659065ee1d84c70c3d29e6eaf92e6798cc2ca72",
+  "rom_included": false,
+  "personal_saves_included": false,
+  "automatic_upload": false,
+  "runtime_sha256": {
+    "app/smp-enemies-v253.exe": "ca874aff87bbd3cad54171fdae4cc298f2976f7155176a9ef7ae7281998fbb20",
+    "app/smp-enemies-v254.exe": "51b0a28165bb1d0a65c602f71488f23ba845dc01244d7b1aa0fd3c749bbe3920"
+  },
+  "validation": {
+    "inherited_renderer_targeted_frames": 5995,
+    "inherited_renderer_probes": 24,
+    "inherited_hud_panel_probe_cycles": 80,
+    "inherited_hud_gui_cases": 5,
+    "scanner_replay_frames": 320,
+    "scanner_fallbacks_removed": 135,
+    "focused_renderer_probes": 25,
+    "blue_scanner_targeted_frames": 1130,
+    "blue_scanner_fallbacks_removed": 724,
+    "native_centers_checked": 1670,
+    "gui_comparison_frames_per_build": 8472
+  },
+  "notes": "Qualified253/254 runtime with guided Windows-to-Deck LAN setup. Fresh friend package setup tested separately; hardware/controller differences remain part of testing."
+}

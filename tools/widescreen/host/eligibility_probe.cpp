@@ -1,0 +1,91 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+#include "scene_eligibility.hpp"
+#include <stdexcept>
+#include <iostream>
+static void require(bool value){if(!value)throw std::runtime_error("eligibility differs");}
+int main() {
+  try {
+    SMPGuiEligibility p;
+    require(p.allow(8,0,0x91f8,0x922d));
+    require(!SMPGuiEligibility::qualifiedTransition(0x91f8,0x922d,0x92fd,0x932e));
+    require(!SMPGuiEligibility::qualifiedTransition(0x92fd,0x932e,0x91f8,0x922d));
+    require(!p.allow(11,0xe38e,0x92fd,0x932e));
+    require(!p.allow(8,0,0x91f8,0x9247));
+    p.reset();
+    require(!p.allow(11,0xe3c0,0x92fd,0x9314));
+    require(p.allow(8,0,0x91f8,0x9213));
+    require(p.allow(9,0xe17d,0x91f8,0x9213));
+    require(p.allow(11,0xe310,0x92fd,0x9213));
+    require(p.allow(11,0xe36e,0x92fd,0x9213));
+    require(!p.allow(11,0xe38e,0x92fd,0x9213));
+    require(p.allow(11,0xe38e,0x92fd,0x9314));
+    require(p.allow(11,0xe4a9,0x92fd,0x9314));
+    require(!p.allow(11,0xffff,0x92fd,0x9314));
+    require(!p.allow(8,0,0x92fd,0x9348));
+    require(!p.allow(11,0xe3c0,0x92fd,0x9314));
+    require(p.allow(8,0,0x96ba,0x96d1));
+    require(p.allow(11,0xe310,0x975c,0x96d1));
+    require(p.allow(11,0xe38e,0x975c,0x976d));
+    require(p.allow(8,0,0x975c,0x976d));
+    require(!p.allow(11,0xe38e,0x96ba,0x96d1));
+    require(p.allow(11,0xe310,0x97b5,0x976d));
+    require(!p.allow(11,0xe38e,0x97b5,0x976d));
+    require(p.allow(11,0xe38e,0x97b5,0x97c6));
+    require(p.allow(8,0,0x97b5,0x97c6));
+    require(!p.allow(11,0xe310,0x975c,0x97c6));
+    require(p.allow(9,0xe19f,0x97b5,0x97c6));
+    require(p.allow(11,0xe310,0x9e9f,0x97c6));
+    require(!p.allow(11,0xe38e,0x9e9f,0x97c6));
+    require(p.allow(11,0xe38e,0x9e9f,0x9eb1));
+    require(p.allow(8,0,0x9e9f,0x9eb1));
+    require(p.allow(11,0xe310,0x97b5,0x9eb1));
+    require(!p.allow(11,0xe38e,0x97b5,0x9eb1));
+    require(p.allow(11,0xe38e,0x97b5,0x97e0));
+    require(p.allow(11,0xe310,0x9f11,0x9eb1));
+    require(!p.allow(11,0xe38e,0x9f11,0x9eb1));
+    require(p.allow(11,0xe38e,0x9f11,0x9f23));
+    require(p.allow(8,0,0x9f11,0x9f23));
+    require(p.allow(11,0xe310,0x9e9f,0x9f23));
+    require(!p.allow(11,0xe38e,0x9e9f,0x9f23));
+    require(p.allow(11,0xe38e,0x9e9f,0x9eb1));
+    require(p.allow(11,0xe310,0xa107,0x9f23));
+    require(!p.allow(11,0xe38e,0xa107,0x9f23));
+    require(p.allow(11,0xe38e,0xa107,0xa114));
+    require(p.allow(8,0,0xa107,0xa114));
+    require(p.allow(11,0xe310,0x9f11,0xa114));
+    require(!p.allow(11,0xe38e,0x9f11,0xa114));
+    require(p.allow(11,0xe38e,0x9f11,0x9f23));
+    require(p.allow(8,0,0x9f11,0x9f23));
+    require(p.allow(11,0xe310,0x9e9f,0x9f23));
+    require(!p.allow(11,0xe38e,0x9e9f,0x9ecb));
+    require(!p.allow(8,0,0xa107,0xffff));
+    require(!p.allow(8,0,0x9f11,0xffff));
+    require(!p.allow(8,0,0x9e9f,0x9ecb));
+    require(p.allow(8,0,0x97b5,0x97e0));
+    require(p.allow(11,0xe310,0x975c,0x97e0));
+    require(!p.allow(11,0xe38e,0x975c,0x97e0));
+    require(p.allow(11,0xe38e,0x975c,0x9787));
+    require(p.allow(8,0,0x975c,0x9787));
+    require(!p.allow(11,0xe310,0x97b5,0x9787));
+    require(p.allow(11,0xe310,0x96ba,0x9787));
+    require(!p.allow(11,0xe38e,0x96ba,0x9787));
+    require(p.allow(11,0xe38e,0x96ba,0x96eb));
+    require(p.allow(8,0,0x96ba,0x96eb));
+    require(!p.allow(11,0xe310,0x92fd,0x96eb));
+    require(SMPGuiEligibility::qualifiedTransition(0x975c,0x976d,0x97b5,0x97c6));
+    require(SMPGuiEligibility::qualifiedTransition(0x9f11,0x9f23,0x9e9f,0x9eb1));
+    require(!SMPGuiEligibility::qualifiedTransition(0x975c,0x9787,0x97b5,0x97c6));
+    require(!SMPGuiEligibility::qualifiedTransition(0x975c,0x976d,0x97b5,0x97e0));
+    require(SMPGuiEligibility::qualifiedTransition(0x97b5,0x97e0,0x975c,0x9787));
+    require(!SMPGuiEligibility::qualifiedTransition(0x975c,0x9787,0x97b5,0x97e0));
+    require(SMPGuiEligibility::qualifiedTransition(0x9e9f,0x9eb1,0x97b5,0x97e0));
+    require(!SMPGuiEligibility::qualifiedTransition(0x9e9f,0x9eb1,0x97b5,0x97c6));
+    require(SMPGuiEligibility::qualifiedTransition(0x975c,0x9787,0x96ba,0x96eb));
+    require(!SMPGuiEligibility::qualifiedTransition(0x96ba,0x96eb,0x92fd,0x9314));
+    require(!SMPGuiEligibility::qualifiedTransition(0x97b5,0x97c6,0x97b5,0x97e0));
+    require(!SMPGuiEligibility::qualifiedTransition(0x97b5,0x97c6,0x97b5,0x97c6));
+    require(p.allow(8,0,0x92fd,0x9314));p.reset();
+    require(!p.allow(9,0xe17d,0x92fd,0x9314));
+    std::cout<<"PASS: explicit states, staged header changes, missing history, unknown phases and reset\n";
+  } catch(const std::exception& e){std::cerr<<e.what()<<"\n";return 2;}
+}

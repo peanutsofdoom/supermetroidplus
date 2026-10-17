@@ -1,0 +1,48 @@
+SUPER METROID PLUS - EASY PC-TO-DECK SETUP
+
+ON YOUR WINDOWS PC
+1. Extract the entire friends ZIP into a writable folder.
+2. Double-click Send to Steam Deck.cmd. Select your original ROM if asked.
+3. Choose your home Wi-Fi/Ethernet connection if more than one is listed.
+   Keep this window open. If Windows prompts, allow private-network access.
+
+ON YOUR DECK
+1. Connect to the same home network and switch to Desktop Mode.
+2. Open a browser and enter the local address displayed by the PC helper.
+3. Click Download Deck installer. Open Downloads in Dolphin file manager.
+4. Right-click Install-Super-Metroid-Plus.desktop > Properties > Permissions >
+   enable Is executable > OK. Open it, choosing Execute/Continue if asked.
+5. Follow the dialogs. Exit Steam when asked. After setup, return to Gaming
+   Mode and launch Super Metroid Plus. Steam may download Proton 10.0 first.
+
+The local browser address is the only thing to type on the Deck. No terminal,
+SSH, Deck password, administrator access or extra emulator install is needed.
+Normal and Coordinates entries share the Deck's progress. Use the Gamepad
+controller layout. Optionally assign F8 to a rear button to toggle coordinates.
+
+Finish by closing the transfer window on your PC. Sharing automatically stops
+after 30 minutes. The downloaded installer works only while that same transfer
+session is open; start the helper and download a fresh installer to retry later.
+
+WHAT GETS COPIED
+The sealed release files plus your selected matching ROM. No PC saves, states,
+screenshots, reports, account settings or SSH keys. Your Deck's existing saves
+and settings are kept; replaced release files and Steam configuration are
+backed up under ~/Games/SuperMetroidPlus/deployment-backups.
+The friends ZIP itself contains no ROM. Keep your generated transfer private.
+
+IF SOMETHING DOES NOT WORK
+- Browser cannot connect: check the selected PC address, same network and the
+  Windows private-network prompt. Guest Wi-Fi may block connections between
+  devices. VPNs can also interfere. Do not change router port forwarding.
+- Downloaded file opens as text: use Dolphin's executable permission and then
+  open it from Dolphin, rather than the browser's downloads panel.
+- Steam reports a compatibility problem: install Proton 10.0 from Steam's Tools
+  library and select it in the game's Properties > Compatibility.
+- Setup detects an existing conflicting Steam entry: it stops without replacing
+  that entry. Keep its error message for support; do not delete your saves.
+- No Windows PC: the manual Desktop Mode instructions in START HERE still work.
+
+This installer uses normal SteamOS desktop tools. Automated local transfer,
+package integrity, preservation and shortcut tests are recorded with this
+release; the complete new click-through flow still needs a fresh Deck user test.

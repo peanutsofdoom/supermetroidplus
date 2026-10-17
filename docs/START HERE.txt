@@ -1,0 +1,80 @@
+SUPER METROID PLUS - FRIENDS PLAYTEST 253 / 254
+
+Windows PCs and Steam Deck (through Proton). Start a new game and play normally.
+This folder keeps its own saves and controls. Normal and Coordinates share them.
+Extract the entire ZIP into a new writable folder before launching.
+
+WINDOWS
+1. Run Import ROM.cmd and select your unmodified Super Metroid (Japan, USA) ROM.
+   A matching 512-byte copier header is removed from the imported copy only.
+2. Connect your controller. Run Configure Controls.exe if mapping is needed:
+   Settings > Input > Controller Port 1 > Gamepad. Close normally when finished.
+3. Run Play.exe. Press F8 to toggle the coordinates HUD whenever you need it.
+   Play With Coordinates.exe starts with the HUD on; F8 works there too.
+   Alt+F4 closes normally. Neither launcher has a play-time limit.
+4. For Steam recording, add the chosen launcher as a non-Steam game and launch
+   it through Steam. Run Windows Capture Mode.cmd once for this folder; this
+   enables the same fullscreen capture mode tested on the owner's Windows PC.
+
+STEAM DECK
+Easiest from a Windows PC: run Send to Steam Deck.cmd and follow its instructions.
+You only type one local browser address on the Deck; the installer handles the
+copy and Steam entries. See STEAM DECK EASY SETUP.txt. Manual setup follows:
+1. In Desktop Mode, extract the folder somewhere permanent, such as Games.
+2. Put your unmodified 3 MiB ROM at games/Super Metroid.sfc. To check/import it,
+   open a terminal in this folder and run:
+     python3 tools/check_rom.py "/path/to/your/rom.sfc"
+3. Add Play With Coordinates.exe to Steam as a non-Steam game. In its Steam
+   Properties > Compatibility, force Proton 10.0 (the tested Proton family).
+   Use a standard Gamepad Steam Input layout. Launch from Gaming Mode.
+4. Assign F8 to an unused rear button in the game's Steam Input controller
+   layout to toggle the HUD while playing. No relaunch is needed. You may use
+   Play.exe instead if you prefer the HUD to start off each time.
+   Keep Start In set to the extracted package folder. No launch options needed.
+5. Do not run Windows Capture Mode.cmd on Deck. Use the default fullscreen mode.
+   If copying a folder previously used on Windows, remove only the file named
+   CAPTURE-SAFE-FULLSCREEN from that copy before its first Deck launch.
+
+Controls: the template has keyboard and common Xbox/Steam Input mappings.
+Keyboard defaults: arrows move/aim; Enter starts/pauses; S jumps; A shoots;
+X runs; Z cancels the selected item; C selects an item; Q/E aim diagonally.
+In-game control customization can change these actions. Configure Controls.exe
+can be launched through the same Steam shortcut with Proton if needed on Deck.
+
+HUD TOGGLE
+F8 switches the HUD on/off, including while paused. In windowed mode, use
+Settings > Debug coordinates HUD. Remap it under Settings > Hotkeys > Toggle
+Debug Coordinates. Existing custom/cleared mappings are preserved; if F8 is
+already assigned to another hotkey, assign a free key in Hotkeys. HUD visibility
+lasts for this session and survives save-state loads. Each launcher keeps its
+usual starting state (Play off, Coordinates on). No game input is consumed.
+
+REPORTING
+Use the shared Discord channel/group chat. One issue per message/thread.
+Please send a short clip or screenshot, what happened, and what you did just
+before it. Keep the bottom-left Coordinates readout visible when possible.
+See REPORTING.txt and REPORT TEMPLATE.txt. A phone video/photo is useful too.
+
+SAVES / UPDATES
+Use normal in-game save stations. Your saves/Super Metroid.srm contains progress.
+Close the game before backing it up. Keep the whole saves folder when updating;
+extract a new build separately and copy your saves into it. Never overwrite a
+friend's progress with another tester's save. Optional save states are under
+states; use the same build when sharing/reproducing a state.
+
+EXPECTED BEHAVIOR
+The HUD is centered; finite room boundaries can leave black areas at the sides.
+Some original SNES slowdown remains. Report unexpected pauses, broken graphics,
+audio, crashes or blocked progress anyway; we will determine the cause.
+Leave emulation-speed, run-ahead, rewind and graphics hacks at packaged defaults.
+This is a custom emulator build with approved arena/enemy-boundary adjustments,
+not a ROM patch for other emulators. See BUILD.json and KNOWN OBSERVATIONS.txt.
+
+No ROM, personal save, retest checkpoint or account configuration is included.
+No account or online connection is needed by the game after setup.
+The source and license notices are included under source and LICENSES.
+
+Official Steam setup reference:
+https://help.steampowered.com/en/faqs/view/4B8B-9697-2338-40EC
+Official Proton setting reference:
+https://help.steampowered.com/en/faqs/view/7DD4-C618-182E-0E49

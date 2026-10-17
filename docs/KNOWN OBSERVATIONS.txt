@@ -1,0 +1,23 @@
+FRIENDS PLAYTEST 253/254 - THINGS TO WATCH, NOT REQUIRED TEST CASES
+
+The9F64 Blue Brinstar scanner now stays wide through the tested tracking angles.
+Normal253 / Coordinates254 preserve the original game state, video and audio.
+
+These intermittent reports did not show a confirmed fault in the available
+evidence. If you notice one, a short clip with Coordinates would help:
+- Wrecked Ship East Super room, especially the entrance/background margins.
+- Speed Booster Hall lava during the run back out.
+- Power Bomb center in the Parlor or elsewhere: capture the full effect and
+  describe what looks wrong (missing center, incorrect flash, seam, etc.).
+- Kihunter hand/wing clipping near a door as the room fades.
+
+Please report new issues too. There is no need to follow a scripted test route.
+For the full playthrough, brief updates after major bosses and at the ending
+help identify coverage. Include crashes/blocked progress as soon as convenient.
+
+This package includes the six rendering fixes from the 243/244 backlog pass.
+It retains original SNES timing and the established gameplay variant, including
+wider Ceres/Mother Brain arena handling and scoped enemy/projectile boundaries.
+
+The9E9F Morph Ball scanner width-switching report is fixed in249/250.
+Please still report any new beam or camera issue with a short clip.

@@ -1,0 +1,213 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  Windows:
+    runs-on: windows-latest
+    env:
+      POWERSHELL_TELEMETRY_OPTOUT: 1
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Build
+      run: mingw32-make -j $env:NUMBER_OF_PROCESSORS -C bsnes
+    - name: Prepare artifacts
+      run: |
+        cp -R pack bsnes\out\
+        cp README.md bsnes\out\pack
+        cp bsnes\out\bsnes.exe bsnes\out\pack\bsnes_hd.exe
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bsnes_hd_beta_X_windows
+        path: bsnes\out\pack
+        if-no-files-found: error
+
+  Windows-libretro:
+    runs-on: windows-latest
+    env:
+      POWERSHELL_TELEMETRY_OPTOUT: 1
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Build
+      run: mingw32-make -j $env:NUMBER_OF_PROCESSORS -C bsnes target=libretro
+    - name: Prepare artifacts
+      run: |
+        mkdir -p bsnes/out/pack
+        cp README.md LICENSE bsnes/out/pack
+        cp -R bsnes/out/*bsnes* bsnes/out/pack
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bsnes_hd_beta_X_windows_libretro
+        path: bsnes\out\pack
+        if-no-files-found: error
+
+  Linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install build-essential libgtk2.0-dev libpulse-dev mesa-common-dev libcairo2-dev libsdl2-dev libxv-dev libao-dev libopenal-dev libudev-dev
+    - name: Build
+      run: make -j $(nproc) -C bsnes
+    - name: Prepare artifacts
+      run: |
+        cp -R pack bsnes/out/
+        cp README.md bsnes/out/pack/readme.md
+        cp bsnes/out/bsnes bsnes/out/pack/bsnes_hd
+        chmod +x bsnes/out/pack/bsnes_hd
+        mkdir -p bsnes/out/tar
+        cd bsnes/out/pack
+        tar -jcvpf ../tar/bsnes_hd_beta_X_linux.tar.bz2 *
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: UNPACK-LINUX
+        path: bsnes/out/tar
+        if-no-files-found: error
+
+  Linux-libretro:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install build-essential libgtk2.0-dev libpulse-dev mesa-common-dev libcairo2-dev libsdl2-dev libxv-dev libao-dev libopenal-dev libudev-dev
+    - name: Build
+      run: make -j $(nproc) -C bsnes target=libretro
+    - name: Prepare artifacts
+      run: |
+        mkdir -p bsnes/out/pack
+        cp README.md LICENSE bsnes/out/pack
+        cp -R bsnes/out/*bsnes* bsnes/out/pack
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bsnes_hd_beta_X_linux_libretro
+        path: bsnes/out/pack
+        if-no-files-found: error
+
+  Linux-ARM-libretro:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: add foreign arch
+      run: |
+        sudo dpkg --add-architecture arm64
+        sudo rm -rf /etc/apt/sources.list
+        echo "deb [arch=amd64] http://us.archive.ubuntu.com/ubuntu focal main restricted" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=amd64] http://us.archive.ubuntu.com/ubuntu focal-updates main restricted" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=amd64] http://us.archive.ubuntu.com/ubuntu focal universe" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=amd64] http://us.archive.ubuntu.com/ubuntu focal-updates universe" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=amd64] http://us.archive.ubuntu.com/ubuntu focal multiverse" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=amd64] http://us.archive.ubuntu.com/ubuntu focal-updates multiverse" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=amd64] http://us.archive.ubuntu.com/ubuntu focal-backports main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal main restricted" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal universe" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates universe" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal multiverse" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates multiverse" | sudo tee -a /etc/apt/sources.list
+        echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-backports main restricted universe multiverse"  | sudo tee -a /etc/apt/sources.list
+    - name: Install needed packages
+      run: sudo apt update && sudo apt install wget:amd64 git:amd64 build-essential:amd64 gcc:amd64 make:amd64 g++-aarch64-linux-gnu:amd64 gcc-aarch64-linux-gnu:amd64 binutils-aarch64-linux-gnu:amd64 libx11-dev:arm64 libxext-dev:arm64
+    - name: Build
+      run: |
+        make -j $(nproc) -C bsnes target=libretro compiler=/usr/bin/aarch64-linux-gnu-g++
+        wget https://raw.githubusercontent.com/libretro/libretro-super/master/retrolink.sh && chmod +x retrolink.sh && ./retrolink.sh bsnes/out/bsnes_hd_beta_libretro.so
+    - name: Prepare artifacts
+      run: |
+        mkdir -p bsnes/out/pack
+        cp README.md LICENSE bsnes/out/pack
+        cp -R bsnes/out/*bsnes* bsnes/out/pack
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bsnes_hd_beta_X_linux_arm_libretro
+        path: bsnes/out/pack
+        if-no-files-found: error
+
+  macOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Build
+      run: |
+        export MACOSX_DEPLOYMENT_TARGET=10.14
+        make -j $(getconf _NPROCESSORS_ONLN) -C bsnes
+    - name: Prepare artifacts
+      run: |
+        mkdir -p bsnes/out/pack
+        cp LICENSE README.md bsnes/out/pack
+        cp -R bsnes/out/*bsnes* bsnes/out/pack
+        mv bsnes/out/pack/bsnes.app bsnes/out/pack/bsnes_hd.app
+        chmod +x bsnes/out/pack/bsnes_hd.app/Contents/MacOS/bsnes
+        mkdir -p bsnes/out/tar
+        cd bsnes/out/pack
+        tar -jcvpf ../tar/bsnes_hd_beta_X_mac.tar.bz2 *
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: UNPACK-MAC
+        path: bsnes/out/tar
+        if-no-files-found: error
+
+  macOS-libretro:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Build
+      run: |
+        export MACOSX_DEPLOYMENT_TARGET=10.14
+        make -j $(getconf _NPROCESSORS_ONLN) -C bsnes target=libretro
+    - name: Prepare artifacts
+      run: |
+        mkdir -p bsnes/out/pack
+        cp README.md LICENSE bsnes/out/pack
+        cp -R bsnes/out/*bsnes* bsnes/out/pack
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bsnes_hd_beta_X_mac_libretro
+        path: bsnes/out/pack
+        if-no-files-found: error
+
+  Android-libretro:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - uses: nttld/setup-ndk@v1
+      with:
+        ndk-version: r20b
+    - name: Build
+      run: |
+        cd bsnes/target-libretro/jni
+        ndk-build
+        cd -
+        cp README.md LICENSE bsnes/target-libretro/libs
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bsnes_hd_beta_X_android_libretro
+        path: bsnes/target-libretro/libs
+        if-no-files-found: error
