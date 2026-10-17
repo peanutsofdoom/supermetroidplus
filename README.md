@@ -1,10 +1,10 @@
 # Super Metroid Plus
 
-A widescreen Super Metroid playtest built on a modified **bsnes-hd** emulator, with room-specific rendering work and selected arena, enemy, and projectile boundary adjustments.
+A widescreen Super Metroid enhancement built on a modified **bsnes-hd** emulator, with room-specific rendering work and selected arena, enemy, and projectile boundary adjustments.
 
 **[Download builds 253 / 254](https://github.com/peanutsofdoom/supermetroidplus/releases/tag/v253.254)** · **[Report an issue](https://github.com/peanutsofdoom/supermetroidplus/issues)**
 
-This is an emulator-based project, not a native decompilation, recompilation, or a ROM patch for other emulators. Windows x64 is the packaged runtime; Steam Deck uses Proton 10.0. The original game's slowdown can still occur. This is a public playtest, not a claim of complete compatibility.
+This is an emulator-based project, not a native decompilation, recompilation, or a ROM patch for other emulators. Windows x64 is the packaged runtime; Steam Deck uses Proton 10.0. The original game's slowdown can still occur. Known limitations and validation coverage are documented below.
 
 ## Bring your own ROM
 
@@ -44,9 +44,9 @@ You can add `peanutsofdoom/supermetroidplus` manually in Quiver, using `Super-Me
 
 On Linux, select the Windows build and configure Proton, or use the tested Steam setup above. A clean Quiver download/install check is tracked separately from the earlier game validation; direct Quiver game launching on every platform is not yet qualified.
 
-Keep automatic updates off during this playtest. Back up saves and install new releases separately before moving your own progress across. Quiver's update behavior has not been qualified for preserving every project-specific file.
+Keep automatic updates off for this release. Back up saves and install new releases separately before moving your own progress across. Quiver's update behavior has not been qualified for preserving every project-specific file.
 
-## What's in this playtest
+## What's in this release
 
 - Widescreen rendering across the game, including work on the intro, Ceres, bosses, and ending.
 - Selected gameplay changes that let widened arenas, enemies, and projectiles use the added horizontal space. This is not entirely identical to stock gameplay.
